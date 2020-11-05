@@ -25,7 +25,6 @@ This program provides the implementation of our QGNN as described in [our paper]
 ### Requirements
 - Python 	3.x
 - Networkx 	2.3
-- Scikit-learn	0.21
 - Scipy		1.3
 - Tensorflow 	1.14 or
 - Pytorch 	1.5.0
@@ -54,7 +53,7 @@ Regarding unsupervised graph classification:
 
 	QGNN$ python train_graph_UnSup.py --dataset IMDBBINARY --batch_size 4 --hidden_size 256 --num_epochs 100 --num_GNN_layers 2 --learning_rate 0.0005 --model_name IMDBBINARY_bs4_hs256_fold0_k2_1
 
-- See [Graph-Transformer](https://github.com/daiquocnguyen/Graph-Transformer) for more details about unsupervised learning. Regarding the Pytorch implementation for the unsupervised learning, you should have Cython 0.29.13 and change to the `log_uniform` directory to perform `make` to build `SampledSoftmax`, and then add the `log_uniform` directory to your PYTHONPATH.
+- See [Graph-Transformer](https://github.com/daiquocnguyen/Graph-Transformer) for more details about unsupervised learning. Regarding the Pytorch implementation for the unsupervised learning, you should have Cython 0.29.13 and Scikit-learn	0.21 and then change to the `log_uniform` directory to perform `make` to build `SampledSoftmax`, and then add the `log_uniform` directory to your PYTHONPATH.
 
 ## Cite  
 Please cite the paper whenever QGNN is used to produce published results or incorporated into other software:
