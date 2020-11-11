@@ -61,7 +61,7 @@ Please cite the paper whenever QGNN is used to produce published results or inco
 	@article{Nguyen2020QGNN,
 		author={Dai Quoc Nguyen and Tu Dinh Nguyen and Dinh Phung},
 		title={Quaternion Graph Neural Networks},
-		journal={arXiv preprint arXiv:2008.05089},
+		journal={NeurIPS 2020 Workshop on Differential Geometry meets Deep Learning. arXiv preprint arXiv:2008.05089},
 		year={2020}
 	}
 
