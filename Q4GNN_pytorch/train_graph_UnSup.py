@@ -23,7 +23,7 @@ if torch.cuda.is_available():
 # Parameters
 # ==================================================
 
-parser = ArgumentParser("Q4GNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
+parser = ArgumentParser("QGNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
 
 parser.add_argument("--run_folder", default="../", help="")
 parser.add_argument("--dataset", default="PTC", help="Name of the dataset.")
@@ -125,7 +125,7 @@ batch_nodes = Batch_Loader()
 
 print("Loading data... finished!")
 #===================================
-model = UnSupQ4GNN(feature_dim_size=feature_dim_size*4,  # A + Ai + Aj + Ak
+model = UnSupQGNN(feature_dim_size=feature_dim_size*4,  # A + Ai + Aj + Ak
                 hidden_size=args.hidden_size,
                 num_GNN_layers=args.num_GNN_layers,
                 vocab_size=graph_pool.shape[1],

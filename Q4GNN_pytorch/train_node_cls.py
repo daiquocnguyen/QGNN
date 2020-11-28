@@ -20,7 +20,7 @@ from q4gnn import *
 
 # Parameters
 # ==================================================
-parser = ArgumentParser("Q4GNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
+parser = ArgumentParser("QGNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
 parser.add_argument("--dataset", default="cora", help="Name of the dataset.")
 parser.add_argument('--epochs', type=int, default=100, help='Number of epochs to train.')
 parser.add_argument('--learning_rate', type=float, default=0.05, help='Initial learning rate.')
@@ -74,11 +74,11 @@ def accuracy(output, labels):
     return correct / len(labels)
 
 '''Quaternion graph neural network! 2-layer Q4GNN!'''
-class Q4GNN(torch.nn.Module):
+class QGNN(torch.nn.Module):
     def __init__(self, nfeat, nhid, nclass, dropout=0.5):
-        super(Q4GNN, self).__init__()
-        self.q4gnn1 = Q4GNNLayer(nfeat, nhid, dropout=dropout)
-        self.q4gnn2 = Q4GNNLayer(nhid, nclass, dropout=dropout, quaternion_ff=False, act=False)
+        super(QGNN, self).__init__()
+        self.q4gnn1 = Q4GNNLayer(nfeat, nhid, dropout=dropout)  # should tune whether relu or tanh
+        self.q4gnn2 = Q4GNNLayer(nhid, nclass, dropout=dropout, quaternion_ff=False, act=lambda x:x) # quaternion_ff=False --> QGNN becomes GCN
 
     def forward(self, x, adj):
         x = self.q4gnn1(x, adj)
@@ -86,7 +86,7 @@ class Q4GNN(torch.nn.Module):
         return F.log_softmax(x, dim=1)
 
 # Model and optimizer
-model = Q4GNN(nfeat=features.size(1), nhid=args.hidden_size, nclass=y_train.shape[1], dropout=args.dropout).to(device)
+model = QGNN(nfeat=features.size(1), nhid=args.hidden_size, nclass=y_train.shape[1], dropout=args.dropout).to(device)
 optimizer = optim.Adam(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
 
 """Adapted from https://github.com/tkipf/pygcn/blob/master/pygcn/train.py"""

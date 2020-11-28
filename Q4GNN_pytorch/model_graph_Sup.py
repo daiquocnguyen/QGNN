@@ -4,9 +4,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 from q4gnn import *
 
-class SupQ4GNN(nn.Module):
+class SupQGNN(nn.Module):
     def __init__(self, feature_dim_size, hidden_size, num_GNN_layers, num_classes, dropout):
-        super(SupQ4GNN, self).__init__()
+        super(SupQGNN, self).__init__()
         self.feature_dim_size = feature_dim_size
         self.hidden_size = hidden_size
         self.num_classes = num_classes

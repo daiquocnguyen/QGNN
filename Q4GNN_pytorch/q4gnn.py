@@ -20,15 +20,41 @@ def make_quaternion_mul(kernel):
     assert kernel.size(1) == hamilton.size(1)
     return hamilton
 
-'''Quaternion graph neural network! Q4GNN layer!'''
+
+'''Quaternion graph neural network! Q4GNN layer for other downstream tasks!'''
+class Q4GNNLayer_v2(Module):
+    def __init__(self, in_features, out_features, act=torch.tanh):
+        super(Q4GNNLayer_v2, self).__init__()
+        self.in_features = in_features
+        self.out_features = out_features
+        self.act = act #
+        self.weight = Parameter(torch.FloatTensor(self.in_features//4, self.out_features))
+        self.reset_parameters()
+        self.bn = torch.nn.BatchNorm1d(out_features)
+
+    def reset_parameters(self):
+        stdv = math.sqrt(6.0 / (self.weight.size(0) + self.weight.size(1)))
+        self.weight.data.uniform_(-stdv, stdv)
+
+    def forward(self, input, adj):
+        hamilton = make_quaternion_mul(self.weight)
+        support = torch.mm(input, hamilton)  # Hamilton product, quaternion multiplication!
+        output = torch.spmm(adj, support)
+        output = self.bn(output)  # using act torch.tanh with BatchNorm can produce competitive results
+        return self.act(output)
+
+
+
+'''Quaternion graph neural network! Q4GNN layer for node and graph classification tasks!'''
 class Q4GNNLayer(Module):
-    def __init__(self, in_features, out_features, dropout, quaternion_ff=True, act=True):
+    def __init__(self, in_features, out_features, dropout, quaternion_ff=True, act=F.relu):
         super(Q4GNNLayer, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
-        self.quaternion_ff = quaternion_ff
-        self.act = act
+        self.quaternion_ff = quaternion_ff  # if False, becoming GCN
+        self.act = act # should tune whether F.relu or F.tanh
         self.dropout = nn.Dropout(dropout)
+        self.bn = torch.nn.BatchNorm1d(out_features)
         #
         if self.quaternion_ff:
             self.weight = Parameter(torch.FloatTensor(self.in_features//4, self.out_features))
@@ -57,7 +83,8 @@ class Q4GNNLayer(Module):
             support = support.double()
 
         output = torch.spmm(adj, support)
-        if self.act:
-            output = F.relu(output)
-        return output
 
+        # output = self.bn(output) # should tune whether using BatchNorm or not; using Dropout and not using BatchNorm;
+                                    # or using BatchNorm and not using Dropout
+
+        return self.act(output)

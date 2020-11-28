@@ -6,9 +6,9 @@ from torch.nn import TransformerEncoder, TransformerEncoderLayer
 from sampled_softmax import  *
 from q4gnn import *
 
-class UnSupQ4GNN(nn.Module):
+class UnSupQGNN(nn.Module):
     def __init__(self, feature_dim_size, hidden_size, num_GNN_layers, sampled_num, vocab_size, dropout, device):
-        super(UnSupQ4GNN, self).__init__()
+        super(UnSupQGNN, self).__init__()
         self.feature_dim_size = feature_dim_size
         self.hidden_size = hidden_size
         self.num_GNN_layers = num_GNN_layers

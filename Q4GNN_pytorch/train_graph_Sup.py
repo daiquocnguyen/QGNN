@@ -21,7 +21,7 @@ if torch.cuda.is_available():
 # Parameters
 # ==================================================
 
-parser = ArgumentParser("Q4GNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
+parser = ArgumentParser("QGNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
 
 parser.add_argument("--run_folder", default="../", help="")
 parser.add_argument("--dataset", default="MUTAG", help="Name of the dataset.")
@@ -120,7 +120,7 @@ Adj_block, X_concat, graph_pool, graph_labels = batch_nodes()
 
 print("Loading data... finished!")
 
-model = SupQ4GNN(feature_dim_size=feature_dim_size*4,  # A + Ai + Aj + Ak
+model = SupQGNN(feature_dim_size=feature_dim_size*4,  # A + Ai + Aj + Ak
                 hidden_size=args.hidden_size, dropout=args.dropout,
                 num_GNN_layers=args.num_GNN_layers,
                 num_classes=num_classes).to(device)
@@ -191,7 +191,7 @@ for epoch in range(1, args.num_epochs + 1):
     train_loss = train()
     cost_loss.append(train_loss)
     acc_test = evaluate()
-    print('| epoch {:3d} | time: {:5.2f}s | loss {:5.2f} | test acc {:5.2f} | '.format(
+    print('| epoch {:3d} | time: {:5.2f}s | loss {:5.2f} | acc {:5.2f} | '.format(
                 epoch, (time.time() - epoch_start_time), train_loss, acc_test*100))
 
     if epoch > 5 and cost_loss[-1] > np.mean(cost_loss[-6:-1]):
