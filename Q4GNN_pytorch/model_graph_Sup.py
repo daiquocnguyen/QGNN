@@ -18,8 +18,7 @@ class SupQGNN(nn.Module):
                 self.q4gnnlayers.append(Q4GNNLayer(self.feature_dim_size, self.hidden_size, dropout=dropout))
             else:
                 self.q4gnnlayers.append(Q4GNNLayer(self.hidden_size, self.hidden_size, dropout=dropout))
-
-        # Linear function
+        #
         self.predictions = torch.nn.ModuleList()
         self.dropouts = torch.nn.ModuleList()
         # self.predictions.append(nn.Linear(feature_dim_size, num_classes)) # For including feature vectors to predict graph labels???

@@ -22,9 +22,7 @@ if torch.cuda.is_available():
 
 # Parameters
 # ==================================================
-
 parser = ArgumentParser("QGNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
-
 parser.add_argument("--run_folder", default="../", help="")
 parser.add_argument("--dataset", default="PTC", help="Name of the dataset.")
 parser.add_argument("--learning_rate", default=0.001, type=float, help="Learning rate")

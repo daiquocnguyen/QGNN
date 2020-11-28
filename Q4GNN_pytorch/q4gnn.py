@@ -44,7 +44,6 @@ class Q4GNNLayer_v2(Module):
         return self.act(output)
 
 
-
 '''Quaternion graph neural network! Q4GNN layer for node and graph classification tasks!'''
 class Q4GNNLayer(Module):
     def __init__(self, in_features, out_features, dropout, quaternion_ff=True, act=F.relu):

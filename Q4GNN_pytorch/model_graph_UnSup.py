@@ -22,7 +22,7 @@ class UnSupQGNN(nn.Module):
                 self.q4gnnlayers.append(Q4GNNLayer(self.feature_dim_size, self.hidden_size, dropout=dropout))
             else:
                 self.q4gnnlayers.append(Q4GNNLayer(self.hidden_size, self.hidden_size, dropout=dropout))
-
+        #
         self.dropouts = nn.Dropout(dropout)
         self.sampled_softmax = SampledSoftmax(self.vocab_size, self.sampled_num, self.hidden_size*self.num_GNN_layers, self.device)
 
