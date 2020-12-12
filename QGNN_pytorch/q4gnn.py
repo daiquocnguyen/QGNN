@@ -21,13 +21,13 @@ def make_quaternion_mul(kernel):
     return hamilton
 
 
-'''Quaternion graph neural network! QGNN layer for other downstream tasks!'''
+'''Quaternion graph neural networks! QGNN layer for other downstream tasks!'''
 class QGNNLayer_v2(Module):
     def __init__(self, in_features, out_features, act=torch.tanh):
         super(QGNNLayer_v2, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
-        self.act = act #
+        self.act = act
         self.weight = Parameter(torch.FloatTensor(self.in_features//4, self.out_features))
         self.reset_parameters()
         self.bn = torch.nn.BatchNorm1d(out_features)
@@ -44,7 +44,7 @@ class QGNNLayer_v2(Module):
         return self.act(output)
 
 
-'''Quaternion graph neural network! QGNN layer for node and graph classification tasks!'''
+'''Quaternion graph neural networks! QGNN layer for node and graph classification tasks!'''
 class QGNNLayer(Module):
     def __init__(self, in_features, out_features, dropout, quaternion_ff=True, act=F.relu):
         super(QGNNLayer, self).__init__()
