@@ -6,7 +6,7 @@ np.random.seed(123)
 tf.compat.v1.set_random_seed(123)
 
 import os
-from model_graph_UnSup import Q4GNN
+from model_graph_UnSup import *
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from scipy.sparse import coo_matrix
 from utils_graph_cls import *
@@ -16,8 +16,7 @@ from sklearn.linear_model import LogisticRegression
 # Parameters
 # ==================================================
 
-parser = ArgumentParser("Q4GNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
-
+parser = ArgumentParser("QGNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
 parser.add_argument("--run_folder", default="../", help="")
 parser.add_argument("--dataset", default="PTC", help="Name of the dataset.")
 parser.add_argument("--learning_rate", default=0.001, type=float, help="Learning rate")
@@ -131,7 +130,7 @@ with tf.Graph().as_default():
     sess = tf.compat.v1.Session(config=session_conf)
     with sess.as_default():
         global_step = tf.Variable(0, name="global_step", trainable=False)
-        q4gnn = Q4GNN(feature_dim_size=feature_dim_size*4,  # A + Ai + Aj + Ak
+        q4gnn = QGNN(feature_dim_size=feature_dim_size*4,  # A + Ai + Aj + Ak
                       hidden_size=args.hidden_size,
                       num_GNN_layers=args.num_GNN_layers,
                       vocab_size=graph_pool.shape[1],
@@ -143,7 +142,7 @@ with tf.Graph().as_default():
         grads_and_vars = optimizer.compute_gradients(q4gnn.total_loss)
         train_op = optimizer.apply_gradients(grads_and_vars, global_step=global_step)
 
-        out_dir = os.path.abspath(os.path.join(args.run_folder, "../runs_Q4GNN_UnSup", args.model_name))
+        out_dir = os.path.abspath(os.path.join(args.run_folder, "../runs_QGNN_UnSup", args.model_name))
         print("Writing to {}\n".format(out_dir))
 
         # Checkpoint directory. Tensorflow assumes this directory already exists so we need to create it

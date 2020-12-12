@@ -178,7 +178,7 @@ def evaluate():
 
 """main process"""
 import os
-out_dir = os.path.abspath(os.path.join(args.run_folder, "../runs_pytorch_Q4GNN_UnSup", args.model_name))
+out_dir = os.path.abspath(os.path.join(args.run_folder, "../runs_pytorch_QGNN_UnSup", args.model_name))
 print("Writing to {}\n".format(out_dir))
 # Checkpoint directory
 checkpoint_dir = os.path.abspath(os.path.join(out_dir, "checkpoints"))

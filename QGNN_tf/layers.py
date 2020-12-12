@@ -27,12 +27,12 @@ def quaternion_ffn(x, dim, name='', activation=None, reuse=None):
             output = activation(output)
         return output
 
-'''Class Q4GNN layer'''
-class QuaternionGraphNN1(Layer):
+'''Class QGNN layer'''
+class QGNNLayer(Layer):
     """Quaternion Graph NN layer."""
     def __init__(self, input_dim, output_dim, placeholders, dropout=0.,
                  sparse_inputs=False, quaternion_ff=True, act=tf.nn.relu, **kwargs):
-        super(QuaternionGraphNN1, self).__init__(**kwargs)
+        super(QGNNLayer, self).__init__(**kwargs)
 
         if dropout:
             self.dropout = placeholders['dropout']

@@ -19,9 +19,9 @@ class UnSupQGNN(nn.Module):
         self.q4gnnlayers = torch.nn.ModuleList()
         for layer in range(self.num_GNN_layers):
             if layer == 0:
-                self.q4gnnlayers.append(Q4GNNLayer(self.feature_dim_size, self.hidden_size, dropout=dropout))
+                self.q4gnnlayers.append(QGNNLayer(self.feature_dim_size, self.hidden_size, dropout=dropout))
             else:
-                self.q4gnnlayers.append(Q4GNNLayer(self.hidden_size, self.hidden_size, dropout=dropout))
+                self.q4gnnlayers.append(QGNNLayer(self.hidden_size, self.hidden_size, dropout=dropout))
         #
         self.dropouts = nn.Dropout(dropout)
         self.sampled_softmax = SampledSoftmax(self.vocab_size, self.sampled_num, self.hidden_size*self.num_GNN_layers, self.device)
@@ -30,7 +30,6 @@ class UnSupQGNN(nn.Module):
         output_vectors = []  # should test output_vectors = [X_concat] --> self.feature_dim_size+self.hidden_size*self.num_GNN_layers
         input = X_concat
         for layer in range(self.num_GNN_layers):
-            #
             input = self.q4gnnlayers[layer](input.double(), Adj_block, True)
             output_vectors.append(input)
 

@@ -85,9 +85,9 @@ class Model(object):
 
 
 '''Quaternion Graph Neural Networks'''
-class Q4GNN(Model):
+class QGNN(Model):
     def __init__(self, placeholders, input_dim, **kwargs):
-        super(Q4GNN, self).__init__(**kwargs)
+        super(QGNN, self).__init__(**kwargs)
 
         self.inputs = placeholders['features']
         self.input_dim = input_dim
@@ -114,7 +114,7 @@ class Q4GNN(Model):
 
     def _build(self):
 
-        self.layers.append(QuaternionGraphNN1(input_dim=self.input_dim,
+        self.layers.append(QGNNLayer(input_dim=self.input_dim,
                                             output_dim=FLAGS.hidden_size,
                                             placeholders=self.placeholders,
                                             act=tf.nn.relu,
@@ -122,14 +122,7 @@ class Q4GNN(Model):
                                             sparse_inputs=True,
                                             logging=self.logging))
 
-        # self.layers.append(QuaternionGraphNN1(input_dim=FLAGS.hidden_size,
-        #                                      output_dim=FLAGS.hidden_size,
-        #                                      placeholders=self.placeholders,
-        #                                      act=tf.nn.relu,
-        #                                      dropout=True,
-        #                                      logging=self.logging))
-
-        self.layers.append(QuaternionGraphNN1(input_dim=FLAGS.hidden_size,
+        self.layers.append(QGNNLayer(input_dim=FLAGS.hidden_size,
                                             output_dim=self.output_dim,
                                             placeholders=self.placeholders,
                                             act=lambda x: x,

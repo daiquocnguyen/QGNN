@@ -54,7 +54,7 @@ placeholders = {
 }
 
 # Create model
-model = Q4GNN(placeholders, input_dim=features[2][1], logging=True)
+model = QGNN(placeholders, input_dim=features[2][1], logging=True)
 
 # Initialize session
 sess = tf.compat.v1.Session()

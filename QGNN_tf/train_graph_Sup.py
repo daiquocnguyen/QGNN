@@ -6,7 +6,7 @@ np.random.seed(123)
 tf.compat.v1.set_random_seed(123)
 
 import os
-from model_graph_Sup import Q4GNN
+from model_graph_Sup import *
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from scipy.sparse import coo_matrix
 from utils_graph_cls import *
@@ -14,8 +14,7 @@ from utils_graph_cls import *
 # Parameters
 # ==================================================
 
-parser = ArgumentParser("Q4GNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
-
+parser = ArgumentParser("QGNN", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
 parser.add_argument("--run_folder", default="../", help="")
 parser.add_argument("--dataset", default="PTC", help="Name of the dataset.")
 parser.add_argument("--learning_rate", default=0.001, type=float, help="Learning rate")
@@ -24,7 +23,7 @@ parser.add_argument("--num_epochs", default=100, type=int, help="Number of train
 parser.add_argument("--saveStep", default=1, type=int, help="")
 parser.add_argument("--allow_soft_placement", default=True, type=bool, help="Allow device soft device placement")
 parser.add_argument("--log_device_placement", default=False, type=bool, help="Log placement of ops on devices")
-parser.add_argument("--model_name", default='MUTAG', help="")
+parser.add_argument("--model_name", default='PTC', help="")
 parser.add_argument("--dropout", default=0.5, type=float, help="Dropout")
 parser.add_argument("--num_GNN_layers", default=2, type=int, help="Number of stacked layers")
 parser.add_argument("--hidden_size", default=256, type=int, help="Hidden_size//4 = number of quaternion units within each hidden layer.")
@@ -128,7 +127,7 @@ with tf.Graph().as_default():
     sess = tf.compat.v1.Session(config=session_conf)
     with sess.as_default():
         global_step = tf.Variable(0, name="global_step", trainable=False)
-        q4gnn = Q4GNN(feature_dim_size=feature_dim_size*4,  # A + Ai + Aj + Ak
+        q4gnn = QGNN(feature_dim_size=feature_dim_size*4,  # A + Ai + Aj + Ak
                       hidden_size=args.hidden_size,
                       num_GNN_layers=args.num_GNN_layers,
                       num_classes=num_classes
@@ -139,7 +138,7 @@ with tf.Graph().as_default():
         grads_and_vars = optimizer.compute_gradients(q4gnn.total_loss)
         train_op = optimizer.apply_gradients(grads_and_vars, global_step=global_step)
 
-        out_dir = os.path.abspath(os.path.join(args.run_folder, "../runs_Q4GNN_Sup", args.model_name))
+        out_dir = os.path.abspath(os.path.join(args.run_folder, "../runs_QGNN_Sup", args.model_name))
         print("Writing to {}\n".format(out_dir))
 
         # Checkpoint directory. Tensorflow assumes this directory already exists so we need to create it

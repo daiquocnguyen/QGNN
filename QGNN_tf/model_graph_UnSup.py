@@ -2,7 +2,7 @@ import tensorflow as tf
 from inits import *
 from layers import *
 
-class Q4GNN(object):
+class QGNN(object):
     def __init__(self, feature_dim_size, hidden_size, num_GNN_layers, num_sampled, vocab_size):
         # Placeholders for input, output
         self.Adj_block = tf.compat.v1.sparse_placeholder(tf.float32, [None, None], name="Adj_block")
@@ -25,7 +25,7 @@ class Q4GNN(object):
             sparse_inputs = False
             if idx_layer == 0:
                 sparse_inputs = True
-            quaternion_gnn = QuaternionGraphNN1(input_dim=in_hidden_size,
+            quaternion_gnn = QGNNLayer(input_dim=in_hidden_size,
                                                   output_dim=hidden_size,
                                                   placeholders=self.placeholders,
                                                   act=tf.nn.relu,

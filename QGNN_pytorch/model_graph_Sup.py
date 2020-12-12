@@ -15,9 +15,9 @@ class SupQGNN(nn.Module):
         self.q4gnnlayers = torch.nn.ModuleList()
         for layer in range(self.num_GNN_layers):
             if layer == 0:
-                self.q4gnnlayers.append(Q4GNNLayer(self.feature_dim_size, self.hidden_size, dropout=dropout))
+                self.q4gnnlayers.append(QGNNLayer(self.feature_dim_size, self.hidden_size, dropout=dropout))
             else:
-                self.q4gnnlayers.append(Q4GNNLayer(self.hidden_size, self.hidden_size, dropout=dropout))
+                self.q4gnnlayers.append(QGNNLayer(self.hidden_size, self.hidden_size, dropout=dropout))
         #
         self.predictions = torch.nn.ModuleList()
         self.dropouts = torch.nn.ModuleList()
@@ -30,7 +30,6 @@ class SupQGNN(nn.Module):
         prediction_scores = 0
         input = X_concat
         for layer in range(self.num_GNN_layers):
-            #
             input = self.q4gnnlayers[layer](input.double(), Adj_block, True)
             #sum pooling
             graph_embeddings = torch.spmm(graph_pool, input.float())
