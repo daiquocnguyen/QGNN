@@ -39,21 +39,11 @@ Regarding node classification:
 	
 	QGNN$ python train_node_cls.py --dataset pubmed --learning_rate 0.01 --hidden_size 64 --epochs 200 --fold 6
 	
-Regarding supervised graph classification:
+Regarding graph classification:
 
 	QGNN$ python train_graph_Sup.py --dataset IMDBBINARY --batch_size 4 --hidden_size 128 --fold_idx 2 --num_epochs 100 --num_GNN_layers 2 --learning_rate 0.0005 --model_name IMDBBINARY_bs4_hs128_fold2_k2_1
 
 	QGNN$ python train_graph_Sup.py --dataset DD --batch_size 4 --hidden_size 256 --fold_idx 5 --num_epochs 100 --num_GNN_layers 3 --learning_rate 0.0005 --model_name DD_bs4_hs256_fold5_k3_1
-
-Regarding unsupervised graph classification:
-	
-	QGNN$ python train_graph_UnSup.py --dataset COLLAB --batch_size 4 --hidden_size 256 --num_epochs 100 --num_GNN_layers 4 --learning_rate 0.00005 --model_name COLLAB_bs4_hs256_fold0_k4_3
-
-	QGNN$ python train_graph_UnSup.py --dataset DD --batch_size 4 --hidden_size 256 --num_epochs 100 --num_GNN_layers 2 --learning_rate 0.001 --model_name DD_bs4_hs256_fold0_k2_0
-
-	QGNN$ python train_graph_UnSup.py --dataset IMDBBINARY --batch_size 4 --hidden_size 256 --num_epochs 100 --num_GNN_layers 2 --learning_rate 0.0005 --model_name IMDBBINARY_bs4_hs256_fold0_k2_1
-
-- See [Graph-Transformer](https://github.com/daiquocnguyen/Graph-Transformer) for more details about unsupervised learning. Regarding the Pytorch implementation for the unsupervised learning, you should have Cython 0.29.13 and Scikit-learn	0.21 and then change to the `log_uniform` directory to perform `make` to build `SampledSoftmax`, and then add the `log_uniform` directory to your PYTHONPATH.
 
 ## Cite  
 Please cite the paper whenever QGNN is used to produce published results or incorporated into other software:
