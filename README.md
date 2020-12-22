@@ -20,7 +20,7 @@ This program provides the implementation of our QGNN as described in [our paper]
 ## Usage
 
 ### News
-- November 02, 2020: The [extended abstract](https://github.com/daiquocnguyen/QGNN/blob/master/2020_QGNN.pdf) of [our paper](https://arxiv.org/pdf/2008.05089.pdf) has been accepted to the NeurIPS 2020 Workshop on Differential Geometry meets Deep Learning (DiffGeo4DL).
+- November 02, 2020: The [extended abstract](https://github.com/daiquocnguyen/QGNN/blob/master/2020_QGNN.pdf) has been accepted to the NeurIPS 2020 Workshop on Differential Geometry meets Deep Learning (DiffGeo4DL).
 
 ### Requirements
 - Python 	3.x
