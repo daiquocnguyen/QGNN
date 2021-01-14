@@ -27,7 +27,7 @@ This program provides the implementation of our QGNN as described in [our paper]
 - Networkx 	2.3
 - Scipy		1.3
 - Tensorflow 	1.14 or
-- Pytorch 	1.5.0
+- Pytorch 	1.4.0
 
 ### Training
 
