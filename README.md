@@ -23,11 +23,11 @@ This program provides the implementation of our QGNN as described in [our paper]
 - November 02, 2020: The [extended abstract](https://github.com/daiquocnguyen/QGNN/blob/master/2020_QGNN.pdf) has been accepted to the NeurIPS 2020 Workshop on Differential Geometry meets Deep Learning (DiffGeo4DL).
 
 ### Requirements
-- Python 	3.x
+- Python 	3.7
 - Networkx 	2.3
 - Scipy		1.3
 - Tensorflow 	1.14 or
-- Pytorch 	1.4.0
+- Pytorch 	1.5.0 & CUDA 10.1
 
 ### Training
 
