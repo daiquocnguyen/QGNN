@@ -11,7 +11,7 @@
 <a href="https://github.com/daiquocnguyen/QGNN/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/daiquocnguyen/QGNN"></a>
 <img alt="GitHub" src="https://img.shields.io/github/license/daiquocnguyen/QGNN">
 
-This program provides the implementation of our QGNN as described in [our paper](https://arxiv.org/pdf/2008.05089.pdf), where we propose to learn quaternion embeddings for nodes and graphs and introduce a novel form of quaternion graph neural networks (QGNN) to generalize GCNs within the Quaternion space, hence improving the embedding quality.
+This program provides the implementation of our QGNN as described in [our paper](https://arxiv.org/abs/2008.05089), where we propose to learn quaternion embeddings for nodes and graphs and introduce a novel form of quaternion graph neural networks (QGNN) to generalize GCNs within the Quaternion space, hence improving the embedding quality.
 
 <p align="center">
 	<img src="https://github.com/daiquocnguyen/QGNN/blob/master/qgnn.png" width="550">
@@ -20,7 +20,7 @@ This program provides the implementation of our QGNN as described in [our paper]
 ## Usage
 
 ### News
-- November 02, 2020: The [extended abstract](https://github.com/daiquocnguyen/QGNN/blob/master/2020_QGNN.pdf) has been accepted to the NeurIPS 2020 Workshop on Differential Geometry meets Deep Learning (DiffGeo4DL).
+- November 02, 2020: The extended abstract of our paper has been accepted to the NeurIPS 2020 Workshop on Differential Geometry meets Deep Learning (DiffGeo4DL).
 
 ### Requirements
 - Python 	3.7
