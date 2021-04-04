@@ -20,7 +20,6 @@ def make_quaternion_mul(kernel):
     assert kernel.size(1) == hamilton.size(1)
     return hamilton
 
-
 '''Quaternion graph neural networks! QGNN layer for other downstream tasks!'''
 class QGNNLayer_v2(Module):
     def __init__(self, in_features, out_features, act=torch.tanh):
@@ -43,14 +42,13 @@ class QGNNLayer_v2(Module):
         output = self.bn(output)  # using act torch.tanh with BatchNorm can produce competitive results
         return self.act(output)
 
-
 '''Quaternion graph neural networks! QGNN layer for node and graph classification tasks!'''
 class QGNNLayer(Module):
     def __init__(self, in_features, out_features, dropout, quaternion_ff=True, act=F.relu):
         super(QGNNLayer, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
-        self.quaternion_ff = quaternion_ff  # if False, becoming GCN
+        self.quaternion_ff = quaternion_ff 
         self.act = act # should tune whether F.relu or F.tanh
         self.dropout = nn.Dropout(dropout)
         self.bn = torch.nn.BatchNorm1d(out_features)
