@@ -49,7 +49,7 @@ class QGNNLayer(Module):
         self.in_features = in_features
         self.out_features = out_features
         self.quaternion_ff = quaternion_ff 
-        self.act = act # should tune whether F.relu or F.tanh
+        self.act = act
         self.dropout = nn.Dropout(dropout)
         self.bn = torch.nn.BatchNorm1d(out_features)
         #
@@ -76,12 +76,11 @@ class QGNNLayer(Module):
         else:
             support = torch.mm(x, self.weight)
 
-        if double_type_used_in_graph: #to deal with scalar type between node and graph classification tasks
+        if double_type_used_in_graph: #to deal with scalar type between node and graph classification tasks, caused by pre-defined feature inputs
             support = support.double()
 
         output = torch.spmm(adj, support)
 
-        # output = self.bn(output) # should tune whether using BatchNorm or not; using Dropout and not using BatchNorm;
-                                    # or using BatchNorm and not using Dropout
+        # output = self.bn(output) # should tune whether using BatchNorm or Dropout
 
         return self.act(output)
