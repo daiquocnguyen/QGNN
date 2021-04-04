@@ -77,8 +77,8 @@ def accuracy(output, labels):
 class QGNN(torch.nn.Module):
     def __init__(self, nfeat, nhid, nclass, dropout=0.5):
         super(QGNN, self).__init__()
-        self.q4gnn1 = QGNNLayer(nfeat, nhid, dropout=dropout)  # should tune whether relu or tanh
-        self.q4gnn2 = QGNNLayer(nhid, nclass, dropout=dropout, quaternion_ff=False, act=lambda x:x) # quaternion_ff=False --> QGNN becomes GCN
+        self.q4gnn1 = QGNNLayer(nfeat, nhid, dropout=dropout) 
+        self.q4gnn2 = QGNNLayer(nhid, nclass, dropout=dropout, quaternion_ff=False, act=lambda x:x) # prediction layer
 
     def forward(self, x, adj):
         x = self.q4gnn1(x, adj)
