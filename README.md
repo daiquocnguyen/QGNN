@@ -11,7 +11,7 @@
 <a href="https://github.com/daiquocnguyen/QGNN/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/daiquocnguyen/QGNN"></a>
 <img alt="GitHub" src="https://img.shields.io/github/license/daiquocnguyen/QGNN">
 
-This program provides the implementation of our QGNN as described in [our paper](https://arxiv.org/abs/2008.05089), where we propose to learn quaternion embeddings for nodes and graphs and introduce a novel form of quaternion graph neural networks (QGNN) to generalize GCNs within the Quaternion space, hence improving the embedding quality.
+This program provides the implementation of our QGNN as described in [our paper](https://arxiv.org/abs/2008.05089), where we propose to learn embeddings for nodes and graphs within the Quaternion space, hence improving the embedding quality.
 
 <p align="center">
 	<img src="https://github.com/daiquocnguyen/QGNN/blob/master/qgnn.png" width="550">
