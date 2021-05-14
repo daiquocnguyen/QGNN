@@ -22,6 +22,7 @@ This program provides the implementation of our QGNN as described in [our paper]
 ### News
 - December 2020: Update (Pytorch) QGNN layer (v2) for other downstream tasks.
 - November 2020: The extended abstract of our paper has been accepted to the NeurIPS 2020 Workshop on Differential Geometry meets Deep Learning (DiffGeo4DL).
+- September 2020: [A new blog](https://daiquocnguyen.github.io/blog/quaternion-graph-neural-networks) on Quaternion Graph Neural Networks.
 
 ### Requirements
 - Python 	3.7
