@@ -84,3 +84,29 @@ class QGNNLayer(Module):
         # output = self.bn(output) # should tune whether using BatchNorm or Dropout
 
         return self.act(output)
+
+'''New variants for QGNN'''
+''' Simplifying Quaternion Graph Neural Networks! following SGC https://arxiv.org/abs/1902.07153'''
+class SQGNN_layer(Module):
+    def __init__(self, in_features, out_features, step_k=1):
+        super(SQGNN_layer, self).__init__()
+        self.in_features = in_features
+        self.out_features = out_features
+        self.step_k = step_k
+        self.weight = Parameter(torch.FloatTensor(self.in_features // 4, self.out_features))
+        self.reset_parameters()
+        #self.bn = torch.nn.BatchNorm1d(out_features)
+
+    def reset_parameters(self):
+        stdv = math.sqrt(6.0 / (self.weight.size(0) + self.weight.size(1)))
+        self.weight.data.uniform_(-stdv, stdv)
+
+    def forward(self, input, adj):
+        hamilton = make_quaternion_mul(self.weight)
+        new_input = torch.spmm(adj, input)
+        if self.step_k > 1:
+            for _ in range(self.step_k-1):
+                new_input = torch.spmm(adj, new_input)
+        output = torch.mm(new_input, hamilton)  # Hamilton product, quaternion multiplication!
+        #output = self.bn(output)
+        return output
