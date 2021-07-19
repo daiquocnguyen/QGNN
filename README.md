@@ -20,7 +20,7 @@ This program provides the implementation of our QGNN as described in [our paper]
 ## Usage
 
 ### News
-- July 2021: Release a Pytorch implementation of Dual Quaternion Graph Neural Networks as described in [our new paper](https://arxiv.org/abs/2104.07396).
+- July 2021: Release a Pytorch implementation of Dual Quaternion Graph Neural Networks as described in [our new paper](https://arxiv.org/abs/2104.07396) about knowledge graph embeddings.
 - June 2021: Release a Pytorch implementation of Simplifying Quaternion Graph Neural Networks.
 - December 2020: Release a Pytorch implementation (v2) of QGNN for downstream tasks.
 - November 2020: The extended abstract of our paper has been accepted to the NeurIPS 2020 Workshop on Differential Geometry meets Deep Learning (DiffGeo4DL).
