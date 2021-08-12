@@ -4,14 +4,13 @@
 
 # Quaternion Graph Neural Networks<a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fdaiquocnguyen%2FQGNN%2Fblob%2Fmaster%2FREADME.md"><img alt="Twitter" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fdaiquocng"></a>
 
-<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/daiquocnguyen/QGNN"><a href="https://github.com/daiquocnguyen/QGNN/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/daiquocnguyen/QGNN"></a>
-<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/daiquocnguyen/QGNN">
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/daiquocnguyen/QGNN"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/daiquocnguyen/QGNN">
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/daiquocnguyen/QGNN">
 <a href="https://github.com/daiquocnguyen/QGNN/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/daiquocnguyen/QGNN"></a>
 <a href="https://github.com/daiquocnguyen/QGNN/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/daiquocnguyen/QGNN"></a>
 <img alt="GitHub" src="https://img.shields.io/github/license/daiquocnguyen/QGNN">
 
-This program provides the implementation of our QGNN as described in [our paper](https://arxiv.org/abs/2008.05089), where we propose to learn embeddings for nodes and graphs within the Quaternion space, hence improving the embedding quality.
+This program provides the implementation of our QGNN as described in [our paper](https://arxiv.org/abs/2008.05089), where we propose to learn embeddings for nodes and graphs within the Quaternion space.
 
 <p align="center">
 	<img src="https://github.com/daiquocnguyen/QGNN/blob/master/qgnn.png" width="350">
