@@ -14,7 +14,7 @@
 This program provides the implementation of our QGNN as described in [our paper](https://arxiv.org/abs/2008.05089), where we propose to learn embeddings for nodes and graphs within the Quaternion space, hence improving the embedding quality.
 
 <p align="center">
-	<img src="https://github.com/daiquocnguyen/QGNN/blob/master/qgnn.png" width="550">
+	<img src="https://github.com/daiquocnguyen/QGNN/blob/master/qgnn.png" width="350">
 </p>
 
 ## Usage
