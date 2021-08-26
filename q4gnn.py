@@ -23,9 +23,10 @@ def make_quaternion_mul(kernel):
 
 """Gated Quaternion GNNs"""
 class GatedQGNN(nn.Module):
-    def __init__(self, feature_dim_size, hidden_size, num_classes, dropout, num_steps=1, act=nn.functional.relu):
+    def __init__(self, feature_dim_size, hidden_size, num_classes, dropout, num_steps=1, act=nn.functional.tanh):
         super(GatedQGNN, self).__init__()
         self.num_steps = num_steps
+        self.act = act
         self.dropout_encode = nn.Dropout(dropout)
         self.emb_encode = Parameter(torch.FloatTensor(feature_dim_size//4, hidden_size))
         self.z0 = Parameter(torch.FloatTensor(hidden_size//4, hidden_size))
