@@ -20,6 +20,60 @@ def make_quaternion_mul(kernel):
     assert kernel.size(1) == hamilton.size(1)
     return hamilton
 
+
+"""Gated Quaternion GNNs"""
+class GatedQGNN(nn.Module):
+    def __init__(self, feature_dim_size, hidden_size, num_GNN_layers, num_classes, dropout, act=nn.functional.relu):
+        super(GatedQGNN, self).__init__()
+        self.num_GNN_layers = num_GNN_layers
+        self.dropout_encode = nn.Dropout(dropout)
+        self.emb_encode = Parameter(torch.FloatTensor(feature_dim_size//4, hidden_size))
+        self.z0 = Parameter(torch.FloatTensor(hidden_size//4, hidden_size))
+        self.z1 = Parameter(torch.FloatTensor(hidden_size//4, hidden_size))
+        self.r0 = Parameter(torch.FloatTensor(hidden_size//4, hidden_size))
+        self.r1 = Parameter(torch.FloatTensor(hidden_size//4, hidden_size))
+        self.h0 = Parameter(torch.FloatTensor(hidden_size//4, hidden_size))
+        self.h1 = Parameter(torch.FloatTensor(hidden_size//4, hidden_size))
+        self.reset_parameters()
+
+    def reset_parameters(self):
+        stdv = math.sqrt(6.0 / (self.emb_encode.size(0) + self.emb_encode.size(1)))
+        self.emb_encode.data.uniform_(-stdv, stdv)
+        stdv = math.sqrt(6.0 / (self.z0.size(0) + self.z0.size(1)))
+        self.z0.data.uniform_(-stdv, stdv)
+        self.z1.data.uniform_(-stdv, stdv)
+        self.r0.data.uniform_(-stdv, stdv)
+        self.r1.data.uniform_(-stdv, stdv)
+        self.h0.data.uniform_(-stdv, stdv)
+        self.h1.data.uniform_(-stdv, stdv)
+
+    def gatedGNN(self, x, adj):
+        a = torch.matmul(adj, x)
+        # update gate
+        z0 = torch.matmul(a, make_quaternion_mul(self.z0))
+        z1 = torch.matmul(x, make_quaternion_mul(self.z1))
+        z = torch.sigmoid(z0 + z1) # missing bias
+        # reset gate
+        r0 = torch.matmul(a, make_quaternion_mul(self.r0))
+        r1 = torch.matmul(x, make_quaternion_mul(self.r1))
+        r = torch.sigmoid(r0 + r1)
+        # update embeddings
+        h0 = torch.matmul(a, make_quaternion_mul(self.h0))
+        h1 = torch.matmul(r*x, make_quaternion_mul(self.h1))
+        h = self.act(h0+h1)
+
+        return h * z + x * (1 - z)
+
+    def forward(self, inputs, adj, mask):
+        x = inputs
+        x = self.dropout_encode(x)
+        x = torch.matmul(x, make_quaternion_mul(self.emb_encode))
+        x = x * mask
+        for idx_layer in range(self.num_GNN_layers):
+            x = self.gatedGNN(x, adj) * mask
+        return x
+    
+    
 '''Quaternion graph neural networks! QGNN layer for other downstream tasks!'''
 class QGNNLayer_v2(Module):
     def __init__(self, in_features, out_features, act=torch.tanh):
