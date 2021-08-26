@@ -64,13 +64,12 @@ class GatedQGNN(nn.Module):
 
         return h * z + x * (1 - z)
 
-    def forward(self, inputs, adj, mask):
+    def forward(self, inputs, adj):
         x = inputs
         x = self.dropout_encode(x)
         x = torch.matmul(x, make_quaternion_mul(self.emb_encode))
-        x = x * mask
         for idx_layer in range(self.num_GNN_layers):
-            x = self.gatedGNN(x, adj) * mask
+            x = self.gatedGNN(x, adj)
         return x
     
     
