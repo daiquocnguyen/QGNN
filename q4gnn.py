@@ -20,7 +20,6 @@ def make_quaternion_mul(kernel):
     assert kernel.size(1) == hamilton.size(1)
     return hamilton
 
-
 """Gated Quaternion GNNs"""
 class GatedQGNN(nn.Module):
     def __init__(self, feature_dim_size, hidden_size, num_classes, dropout, num_steps=1, act=nn.functional.tanh):
@@ -72,7 +71,6 @@ class GatedQGNN(nn.Module):
         for idx_layer in range(self.num_steps):
             x = self.gatedGNN(x, adj)
         return x
-    
     
 '''Quaternion graph neural networks! QGNN layer for other downstream tasks!'''
 class QGNNLayer_v2(Module):
