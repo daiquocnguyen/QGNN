@@ -12,9 +12,10 @@
 
 This program provides the implementation of our QGNN as described in [our paper](https://arxiv.org/abs/2008.05089), where we propose to learn embeddings for nodes and graphs within the Quaternion space.
 
-<p align="center">
-	<img src="https://github.com/daiquocnguyen/QGNN/blob/master/qgnn.png" width="350">
-</p>
+QGNN           |  SimQGNN for knowledge graph completion
+:-------------------------:|:-------------------------:
+![](https://github.com/daiquocnguyen/QGNN/blob/master/qgnn.png)  |  ![](https://github.com/daiquocnguyen/QGNN/blob/master/SimQGNN.png)
+
 
 ## Usage
 
