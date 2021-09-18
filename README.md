@@ -19,6 +19,7 @@ This program provides the implementation of our QGNN as described in [our paper]
 ## Usage
 
 ### News
+- September 2021: Our paper has been accepted to ACML 2021. Release SimQGNN for knowledge graph completion and TextQGNN for inductive text classification.
 - August 2021: Release a Pytorch implementation of Gated Quaternion Graph Neural Networks.
 - July 2021: Release a Pytorch implementation of Dual Quaternion Graph Neural Networks as described in [our new paper](https://arxiv.org/abs/2104.07396) about knowledge graph embeddings.
 - June 2021: Release a Pytorch implementation of Simplifying Quaternion Graph Neural Networks.
