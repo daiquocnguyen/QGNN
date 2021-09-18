@@ -36,6 +36,14 @@ This program provides the implementation of our QGNN as described in [our paper]
 
 ### Training
 
+Regarding knowledge graph completion: 
+	
+	SimQGNN$ python main_SimQGNN.py --dataset codex-s --num_iterations 4000 --eval_after 2000 --batch_size 1024 --lr 0.01 --emb_dim 128 --hidden_dim 128 --encoder QGNN
+	
+	SimQGNN$ python main_SimQGNN.py --dataset codex-m --num_iterations 4000 --eval_after 2000 --batch_size 1024 --lr 0.005 --emb_dim 128 --hidden_dim 128 --encoder QGNN
+	
+	SimQGNN$ python main_SimQGNN.py --dataset codex-l --num_iterations 2000 --eval_after 1000 --batch_size 1024 --lr 0.0001 --emb_dim 128 --hidden_dim 128 --encoder QGNN
+
 Regarding node classification:
 
 	QGNN$ python train_node_cls.py --dataset cora --learning_rate 0.05 --hidden_size 16 --epochs 100 --fold 2
