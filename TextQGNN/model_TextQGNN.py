@@ -20,7 +20,7 @@ def make_quaternion_mul(kernel):
     assert kernel.size(1) == hamilton.size(1)
     return hamilton
 
-"""Quaternion GatedGNN"""
+"""Gated Quaternion GNNs"""
 class GatedQGNN(nn.Module):
     def __init__(self, feature_dim_size, hidden_size, num_steps, num_classes, dropout, act=torch.relu):
         super(GatedQGNN, self).__init__()
@@ -87,7 +87,6 @@ class GatedQGNN(nn.Module):
         prediction_scores = self.prediction(graph_embeddings)
 
         return prediction_scores
-
 
 
 """https://arxiv.org/abs/1511.05493"""
