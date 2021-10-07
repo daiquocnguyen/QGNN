@@ -12,7 +12,7 @@
 
 This program provides the implementation of our QGNN as described in [our paper](https://arxiv.org/abs/2008.05089), where we propose to learn embeddings for nodes and graphs within the Quaternion space.
 
-QGNN           |  Knowledge graph completion
+QGNN           |  GNNs for knowledge graph completion
 :-------------------------:|:-------------------------:
 ![](https://github.com/daiquocnguyen/QGNN/blob/master/qgnn.png)  |  ![](https://github.com/daiquocnguyen/QGNN/blob/master/SimQGNN.png)
 
@@ -20,7 +20,7 @@ QGNN           |  Knowledge graph completion
 ## Usage
 
 ### News
-- September 2021: Our paper has been accepted to ACML 2021. Release SimQGNN for knowledge graph completion.
+- September 2021: Our paper has been accepted to ACML 2021.
 - August 2021: Release a Pytorch implementation of Gated Quaternion Graph Neural Networks.
 - July 2021: Release a Pytorch implementation of Dual Quaternion Graph Neural Networks as described in [our new paper](https://arxiv.org/abs/2104.07396) about knowledge graph embeddings.
 - June 2021: Release a Pytorch implementation of Simplifying Quaternion Graph Neural Networks.
