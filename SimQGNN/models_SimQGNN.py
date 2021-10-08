@@ -64,7 +64,6 @@ class SimQGNN(torch.nn.Module):
         pred = torch.sigmoid(hrt)
         return pred
 
-
 ''' A re-implementation of DistMult, following the 1-N scoring strategy '''
 class DistMult(torch.nn.Module):
    def __init__(self, emb_dim, n_entities, n_relations):
