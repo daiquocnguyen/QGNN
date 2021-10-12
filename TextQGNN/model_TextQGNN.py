@@ -81,7 +81,7 @@ class GatedQGNN(nn.Module):
         soft_att = torch.sigmoid(self.soft_att(x))
         x = self.act(torch.matmul(x, make_quaternion_mul(self.ln)))
         x = soft_att * x * mask
-        # sum and max pooling
+        # sum and max pooling, following https://openreview.net/pdf?id=wVFkD13GpeX
         graph_embeddings = torch.sum(x, 1) * torch.amax(x, 1)
         graph_embeddings = self.dropout(graph_embeddings)
         prediction_scores = self.prediction(graph_embeddings)
@@ -89,7 +89,7 @@ class GatedQGNN(nn.Module):
         return prediction_scores
 
 
-"""https://arxiv.org/abs/1511.05493"""
+"""https://arxiv.org/abs/1511.05493 and https://openreview.net/pdf?id=wVFkD13GpeX"""
 class GatedGNN(nn.Module):
     def __init__(self, feature_dim_size, hidden_size, num_steps, num_classes, dropout, act=torch.relu):
         super(GatedGNN, self).__init__()
@@ -132,7 +132,7 @@ class GatedGNN(nn.Module):
         soft_att = torch.sigmoid(self.soft_att(x))
         x = self.act(self.ln(x))
         x = soft_att * x * mask
-        # sum and max pooling
+        # sum and max pooling, following https://openreview.net/pdf?id=wVFkD13GpeX
         graph_embeddings = torch.sum(x, 1) * torch.amax(x, 1)
         graph_embeddings = self.dropout(graph_embeddings)
         prediction_scores = self.prediction(graph_embeddings)
