@@ -62,7 +62,7 @@ Regarding graph classification:
 ## Cite  
 Please cite the paper whenever QGNN is used to produce published results or incorporated into other software:
 
-	@inproceedings{Nguyen2020QGNN,
+	@inproceedings{Nguyen2021QGNN,
 		author={Dai Quoc Nguyen and Tu Dinh Nguyen and Dinh Phung},
 		title={Quaternion Graph Neural Networks},
 		booktitle={Asian Conference on Machine Learning},
